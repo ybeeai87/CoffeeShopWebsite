@@ -1,25 +1,13 @@
-﻿@*
+﻿@model User
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 <div style="text-align:center;">
-    <h4>@ViewData["Result"]</h4>
-    <h5>How Do You Usually Take Your Coffee?</h5>
-    <form method="post" asp-action="Index">
-        <input type="radio" id="Black" name="Black" />
-        <label for="Black">Black</label><br>
+    <h4>@ViewData["ErrorMsg"]</h4>
+    @*<h4>@ViewData["Result"]</h4>*@
+    <h4>Welcome @Model.FirstName @Model.LastName, you created an account under @Model.Email! Your birthday is @Model.Birthday. Have you had your coffee? @Model.CheckCoffee.</h4>
 
-        <input type="radio" id="Cream" name="Cream" />
-        <label for="Cream">With Cream</label><br>
-
-        <input type="radio" id="Sugar" name="Sugar" />
-        <label for="Sugar">With Sugar</label><br>
-
-        <input type="radio" id="CreamSuger" name="CreamSuger" />
-        <label for="CreamSuger">With Cream & Sugar</label><br>
-
-        <input type="submit" />
-
-    </form>
 </div>

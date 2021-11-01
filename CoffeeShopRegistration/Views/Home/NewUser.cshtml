@@ -1,19 +1,32 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
+@{ViewData["Title"] = "New User";
 }
 <h4>New User Form:</h4>
-<form method="post" asp-action="Result">
+<form method="post" asp-action="SaveCustomer">
     <div style="text-align:center; color: rebeccapurple">
         <label for="FirstName">Enter Your First Name:</label><br />
-        <input type="text" name="FirstName" placeholder="John" /><br />
+        <input type="text" name="FirstName" placeholder="John"  id="FirstName" required/><br />
+
         <label for="LastName">Enter Your Last Name:</label><br />
-        <input type="text" name="LastName" placeholder="Doe" /><br />
+        <input type="text" name="LastName" placeholder="Doe" id="LastName" required /><br />
+
         <label for="Email">Enter Your Email Address:</label><br />
-        <input type="email" name="Email" placeholder="John.Doe@gmail.com" /><br />
+        <input type="email" name="Email" placeholder="John.Doe@gmail.com" id="Email" required />
+        <br />
         <label for="Password">Create A Password:</label><br />
-        <input type="password" name="Password" placeholder="123456" /><br />
+        <input type="password" name="Password" placeholder="123456" id="Password" minlength="5" required/><br />
+
+        <label for="Birthday">Birthday: </label><br />
+        <input type="date" name="birthday"  id="Birthday" required />
+       
+        <p>Have you had coffee today?</p>
+        <label for="false">No Coffee yet</label><br />
+        <input type="radio" name="CheckCoffee" value="0" id="false" /><br />
+        <label for="true">Yes! Coffee Ingested!</label><br />
+        <input type ="radio" name="CheckCoffee" value="1" id="true" /><br />
+
         <input type="submit" />
     </div>
 

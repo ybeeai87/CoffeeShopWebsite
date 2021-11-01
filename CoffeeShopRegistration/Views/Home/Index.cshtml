@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<User>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -8,3 +10,7 @@
 <li style="color: darkgoldenrod; text-align:center;">
     <a asp-area="" asp-controller="Home" asp-action="NewUser">New User</a>
 </li>
+<h4>Customer List:</h4>
+@foreach(User u in Model){
+    <h5>@u.ID. @u.FirstName Birthday: @u.Birthday Had Coffee Today? @u.CheckCoffee </h5>
+}

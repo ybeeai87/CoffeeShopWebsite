@@ -20,7 +20,12 @@ namespace CoffeeShopRegistration.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<User> result = null;
+            using (CoffeeShopContext context = new CoffeeShopContext())
+            {
+                result = context.Users.ToList();
+            }
+            return View(result);
         }
 
         public IActionResult Privacy()
@@ -31,10 +36,28 @@ namespace CoffeeShopRegistration.Controllers
         {
             return View();
         }
-        public IActionResult Result(string FirstName, string LastName, string Email, string Password)
+        public IActionResult SaveCustomer(User user)
         {
-            ViewData["Result"] = $"Welcome {FirstName} {LastName}";
-            return View();
+            using (CoffeeShopContext context = new CoffeeShopContext())
+            {
+                context.Users.Add(user);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Result", user);
+        }
+
+        public IActionResult Result(User U) //models better than ViewData etc... due to being much faster and works smoother.
+        {
+            if (U.Password.ToLower() == "password")
+            {
+              //  ViewData["ErrorMsg"] = "Please enter a different password.";
+                return RedirectToAction("NewUser");
+            }
+           
+            return View(U);
+
+            //ViewData["Result"] = $"Welcome {FirstName} {LastName}";
+            
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
